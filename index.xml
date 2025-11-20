@@ -5,16 +5,49 @@
     <link>https://ADHDMurky.github.io/</link>
     <description>Recent content on ADHDMurky Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 19 Nov 2025 22:06:00 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 21 Nov 2025 00:26:14 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My First Post</title>
-      <link>https://ADHDMurky.github.io/posts/mypost/</link>
-      <pubDate>Wed, 19 Nov 2025 22:06:00 +0100</pubDate>
+      <title>MSSQL | Potatos and how to not use them</title>
+      <link>https://ADHDMurky.github.io/posts/post/</link>
+      <pubDate>Fri, 21 Nov 2025 00:26:14 +0100</pubDate>
       
-      <guid>https://ADHDMurky.github.io/posts/mypost/</guid>
+      <guid>https://ADHDMurky.github.io/posts/post/</guid>
       
-      <description>&lt;p&gt;Content test123&lt;/p&gt;</description>
+      <description>&lt;p&gt;Note: Before you dive in, I want to point out that this post does not explore deep, low-level technical details. It&amp;rsquo;s a proof of concept for an alternative technique that I haven&amp;rsquo;t seen anyone else cover, so I decided to write about it. I don&amp;rsquo;t think it will provide major benefits, but it might be useful for some red team engagements, especially when using Living off the Land and it is a fun technique.&lt;/p&gt;</description>
+      
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://ADHDMurky.github.io/whoami/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://ADHDMurky.github.io/whoami/</guid>
+      
+      <description>&lt;p align=&#34;center&#34;&gt;
+  &lt;img src=&#34;https://ADHDMurky.github.io/_resources/avatar.jpg&#34;
+       alt=&#34;Murky.png&#34;
+       style=&#34;max-width:150px; border-radius:50%;&#34; /&gt;
+&lt;/p&gt;
+&lt;p&gt;I am a cybersecurity professional specializing in red team operations, internal penetration testing, and Active Directory exploitation.&lt;/p&gt;
+&lt;p&gt;Currently, I work on red team engagements and security assessments involving modern enterprise environments, focusing on Active Directory security, ADCS exploitation, SCCM security assessments, and Exchange server compromises. Currently holding following certifications:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;HTB Certified Active Directory Pentesting Expert (CAPE)&lt;/li&gt;
+&lt;li&gt;Certified Red Team Operator (CRTO)&lt;/li&gt;
+&lt;li&gt;Certified Red Team Master (CRTM)&lt;/li&gt;
+&lt;li&gt;Certified Red Team Expert (CRTE)&lt;/li&gt;
+&lt;li&gt;Certified Red Team Professional (CRTP)&lt;/li&gt;
+&lt;li&gt;Certified Red Team Specialist v2 (CRTS)&lt;/li&gt;
+&lt;li&gt;Certified Red Team Analyst v2 (CRTA)&lt;/li&gt;
+&lt;li&gt;Practical Network Penetration Tester (PNPT)&lt;/li&gt;
+&lt;li&gt;Certified Active Directory Pentesting eXpert v2 (C-ADPenX)&lt;/li&gt;
+&lt;li&gt;Certified Red Teamer (CRTeamer)&lt;/li&gt;
+&lt;li&gt;Certified Enterprise Security Professional (CESP-ADCS)&lt;/li&gt;
+&lt;li&gt;Certified Active Directory Red Team Specialist (AD-RTS)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p style=&#34;text-align: center;&#34;&gt;Feel free to connect&lt;/p&gt;</description>
       
     </item>
     

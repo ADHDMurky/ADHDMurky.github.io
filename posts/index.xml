@@ -5,16 +5,16 @@
     <link>https://ADHDMurky.github.io/posts/</link>
     <description>Recent content in Posts on ADHDMurky Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 19 Nov 2025 22:06:00 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-gb</language>
+    <lastBuildDate>Fri, 21 Nov 2025 00:26:14 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My First Post</title>
-      <link>https://ADHDMurky.github.io/posts/mypost/</link>
-      <pubDate>Wed, 19 Nov 2025 22:06:00 +0100</pubDate>
+      <title>MSSQL | Potatos and how to not use them</title>
+      <link>https://ADHDMurky.github.io/posts/post/</link>
+      <pubDate>Fri, 21 Nov 2025 00:26:14 +0100</pubDate>
       
-      <guid>https://ADHDMurky.github.io/posts/mypost/</guid>
+      <guid>https://ADHDMurky.github.io/posts/post/</guid>
       
-      <description>&lt;p&gt;Content test123&lt;/p&gt;</description>
+      <description>&lt;p&gt;Note: Before you dive in, I want to point out that this post does not explore deep, low-level technical details. It&amp;rsquo;s a proof of concept for an alternative technique that I haven&amp;rsquo;t seen anyone else cover, so I decided to write about it. I don&amp;rsquo;t think it will provide major benefits, but it might be useful for some red team engagements, especially when using Living off the Land and it is a fun technique.&lt;/p&gt;</description>
       
     </item>
     

