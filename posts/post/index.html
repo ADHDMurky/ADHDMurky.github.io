@@ -53,7 +53,7 @@
         },
         "datePublished": "2025-11-21",
         "description": "",
-        "wordCount":  1165 ,
+        "wordCount":  1169 ,
         "mainEntityOfPage": "True",
         "dateModified": "2025-11-21",
         "image": {
@@ -217,11 +217,11 @@ stroke-linejoin="round" class="feather feather-home">
 <p>But this is a machine account using the MSSQL protocol, it would be pure administrative stupidity to assign it as a local administrator on other hosts.</p>
 <p><img src="/PostImages/1efcb4e83eb52863ecbfb6c7af144531.png" alt="1efcb4e83eb52863ecbfb6c7af144531.png"></p>
 <p>Yes&hellip;that happens also&hellip;.</p>
-<p>Because of this, I want to point out another quick win you can exploit to pwn an MSSQL server and that is by forcing it to authenticate via HTTP. Why? Because, as my senior colleague would say, HTTP authentication is like a wh*re: it takes everyone and gives it to anyone.Meaning, you can relay anything over HTTP, and HTTP can be relayed everywhere unless non-default security measures are in place.</p>
+<p>Because of this, I want to point out another quick win you can exploit to pwn an MSSQL server and that is by forcing it to authenticate via HTTP. Why? Because, as my senior colleague would say, HTTP authentication is like a wh*re: it takes everyone and gives it to anyone. Meaning, you can relay anything over HTTP, and HTTP can be relayed everywhere unless non-default security measures are in place.</p>
 <p>There are two known easy relays for this:</p>
 <ul>
 <li>One to the ADCS Web Enrollment for the default certificate template, which leads to domain authentication as machine account (HTTP)</li>
-<li>Other to the Domain Controller for RBCD setup(LDAP).</li>
+<li>Other to the Domain Controller for RBCD setup (LDAP).</li>
 </ul>
 <p> </p>
 <p>Both of these lead to that server takeover. Here is easy POC, first off we use Invoke-WebRequest command with UseDefaultCredenitals parameter:</p>
@@ -229,8 +229,8 @@ stroke-linejoin="round" class="feather feather-home">
 <p>And then relay it on either LDAP (on DC) or HTTP (on CA).</p>
 <p><img src="/PostImages/080af039ed70e4158d47e95429e6b9a6.png" alt="080af039ed70e4158d47e95429e6b9a6.png"></p>
 <p><img src="/PostImages/fe2f9bd5b3e0b0c5a103e2874ee729e6.png" alt="fe2f9bd5b3e0b0c5a103e2874ee729e6.png"></p>
-<p>But to keep things even spicier, let’s say there is no Web Enrollment, LDAP signing is disabled or just firewall rules blocking outbound auth.</p>
-<p>I was thinking to myself: if Network Service accounts use the machine account for network operations, could I then simply request a certificate template for the machine? Since certificate requests communicate with with the CA server through dynamically allocated RPC/DCOM ports (that is network operation?).</p>
+<p>But to keep things even spicier, let’s say there is no Web Enrollment, LDAP signing is enabled or just firewall rules blocking outbound auth.</p>
+<p>I was thinking to myself: if Network Service accounts use the machine account for network operations, could I then simply request a certificate template for the machine, since certificate requests communicate with with the CA server through dynamically allocated RPC/DCOM ports (that is network operation?).</p>
 <p>In my lab I will use deafult Computer (Machine) Template on my CA as one of the published ones on AD.</p>
 <p><img src="/PostImages/788247f515dfc81bb9392a8686e6319f.png" alt="788247f515dfc81bb9392a8686e6319f.png"></p>
 <p><img src="/PostImages/0bc5ec3f128614ea7ff2e3064ea23e57.png" alt="0bc5ec3f128614ea7ff2e3064ea23e57.png"></p>
@@ -239,11 +239,12 @@ stroke-linejoin="round" class="feather feather-home">
 <p>Denied!</p>
 <p>Even exporting existing ones in the store is not possible since user doesn&rsquo;t have privileges to do so, and is missing keyset (but I&rsquo;ve seen cases where this is also misconfigured in client environment):</p>
 <p><img src="/PostImages/24605393721fa3cb6fc76f4ea621867a.png" alt="24605393721fa3cb6fc76f4ea621867a.png"></p>
-<p>That is simply because this would be a very straightforward local privilege escalation path, sadly it&rsquo;s not.</p>
+<p>This is happening simply because this would be a very straightforward local privilege escalation path, sadly it&rsquo;s not.</p>
 <p>But let’s try it with our Network Service account. First, we’ll create a basic certificate signing request (CSR) with only the Common Name field filled, set to match our MSSQL server.</p>
 <pre tabindex="0"><code>└─$ openssl req -newkey rsa:2048 -keyout MyKey.key -out certreq.csr
 &lt;snip&gt;
 Common Name (e.g. server FQDN or YOUR name) []:MSSQL.ANOTHER.SI
+&lt;snip&gt;
 </code></pre><p><img src="/PostImages/a2090b1846312ca8fce3e7da2ba37bf7.png" alt="a2090b1846312ca8fce3e7da2ba37bf7.png"></p>
 <p>Here is what our newly created CSR file looks like:</p>
 <p><img src="/PostImages/a86e55e310f00226ea6b9661ee4a4646.png" alt="a86e55e310f00226ea6b9661ee4a4646.png"></p>
