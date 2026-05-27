@@ -6,7 +6,21 @@
     <description>Recent content in Posts on ADHDMurky Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Mon, 09 Mar 2026 00:26:14 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 27 May 2026 00:26:18 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>BYOVD for dummies | Lenovo driver EDR killer</title>
+      <link>https://ADHDMurky.github.io/posts/post3/</link>
+      <pubDate>Wed, 27 May 2026 00:26:18 +0100</pubDate>
+      
+      <guid>https://ADHDMurky.github.io/posts/post3/</guid>
+      
+      <description>&lt;p&gt;Once I found out about this new driver exploit, I was eager to reverse engineer it and attempt to abuse it using my current (noob) skill set.&lt;/p&gt;
+&lt;p&gt;A write-up for this driver is publicly available, but I chose not to read it, as that would have taken away from the learning experience.&lt;/p&gt;
+&lt;p&gt;The original research can be found &lt;a href=&#34;https://git.redteamfortress.com/j3h4ck/PhantomKiller&#34;&gt;PhantomKiller&lt;/a&gt;. But mine is like I said&amp;hellip;. for dummies :D&lt;/p&gt;
+&lt;p&gt;So I decided to approach this my own way and explain it as simply as possible, they say that’s the best way to learn.&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>Lying to your fACE | Easy way to setup ADCS Honeypot</title>
       <link>https://ADHDMurky.github.io/posts/post2/</link>

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en-gb"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">BYOVD for dummies | Lenovo driver EDR killer | ADHDMurky Blog</title>
+<meta property="og:title" content="BYOVD for dummies | Lenovo driver EDR killer | ADHDMurky Blog" />
+<meta name="twitter:title" content="BYOVD for dummies | Lenovo driver EDR killer | ADHDMurky Blog" />
+<meta itemprop="name" content="BYOVD for dummies | Lenovo driver EDR killer | ADHDMurky Blog" />
+<meta name="application-name" content="BYOVD for dummies | Lenovo driver EDR killer | ADHDMurky Blog" />
+<meta property="og:site_name" content="ADHDMurkySite" />
+
+<meta name="description" content="Personal Blog Home Page">
+<meta itemprop="description" content="Personal Blog Home Page" />
+<meta property="og:description" content="Personal Blog Home Page" />
+<meta name="twitter:description" content="Personal Blog Home Page" />
+
+<meta property="og:locale" content="en-gb" />
+<meta name="language" content="en-gb" />
+
+  <link rel="alternate" hreflang="en-gb" href="https://ADHDMurky.github.io/posts/post3/" title="English" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2026-05-27T00:26:18&#43;0100 />
+    <meta property="article:published_time" content=2026-05-27T00:26:18&#43;0100 />
+    <meta property="og:url" content="https://ADHDMurky.github.io/posts/post3/" />
+
+    
+    <meta property="og:article:author" content="Pavičić J." />
+    <meta property="article:author" content="Pavičić J." />
+    <meta name="author" content="Pavičić J." />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "BYOVD for dummies | Lenovo driver EDR killer",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2026-05-27",
+        "description": "",
+        "wordCount":  1104 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2026-05-27",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "ADHDMurky Blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.152.2">
+
+    
+    <meta property="og:url" content="https://ADHDMurky.github.io/posts/post3/">
+  <meta property="og:site_name" content="ADHDMurky Blog">
+  <meta property="og:title" content="BYOVD for dummies | Lenovo driver EDR killer">
+  <meta property="og:description" content="Once I found out about this new driver exploit, I was eager to reverse engineer it and attempt to abuse it using my current (noob) skill set.
+A write-up for this driver is publicly available, but I chose not to read it, as that would have taken away from the learning experience.
+The original research can be found PhantomKiller. But mine is like I said…. for dummies :D
+So I decided to approach this my own way and explain it as simply as possible, they say that’s the best way to learn.">
+  <meta property="og:locale" content="en_gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-05-27T00:26:18+01:00">
+    <meta property="article:modified_time" content="2026-05-27T00:26:18+01:00">
+
+
+    
+    
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="BYOVD for dummies | Lenovo driver EDR killer">
+  <meta name="twitter:description" content="Once I found out about this new driver exploit, I was eager to reverse engineer it and attempt to abuse it using my current (noob) skill set.
+A write-up for this driver is publicly available, but I chose not to read it, as that would have taken away from the learning experience.
+The original research can be found PhantomKiller. But mine is like I said…. for dummies :D
+So I decided to approach this my own way and explain it as simply as possible, they say that’s the best way to learn.">
+
+
+    
+
+    <link rel="canonical" href="https://ADHDMurky.github.io/posts/post3/">
+    <link href="/style.min.2d921c18cf1ec555ffc03d59a8adc211c402c68c930c27d6a0c306ab175a8d09.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://ADHDMurky.github.io/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://ADHDMurky.github.io/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/whoami/">
+                        Whoami
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">BYOVD for dummies | Lenovo driver EDR killer</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-05-27T00:26:18&#43;01:00" itemprop="datePublished"> 27 May 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>Once I found out about this new driver exploit, I was eager to reverse engineer it and attempt to abuse it using my current (noob) skill set.</p>
+<p>A write-up for this driver is publicly available, but I chose not to read it, as that would have taken away from the learning experience.</p>
+<p>The original research can be found <a href="https://git.redteamfortress.com/j3h4ck/PhantomKiller">PhantomKiller</a>. But mine is like I said&hellip;. for dummies :D</p>
+<p>So I decided to approach this my own way and explain it as simply as possible, they say that’s the best way to learn.</p>
+<p>I located the driver and downloaded it to my virtual machine for analysis and used IDA to manually reverse engineer it.</p>
+<p><img src="/PostImages/0b1f9678011749a904c0d68e58c1613f.png" alt="0b1f9678011749a904c0d68e58c1613f.png"></p>
+<p>Best way to determine whether a driver is vulnerable is by examining its function imports from ntoskrnl. We can see that we have <code>ZwTerminateProcess</code> function. Let&rsquo;s check it out.</p>
+<p><img src="/PostImages/49ffac89fee2ac9436111f55e997667e.png" alt="49ffac89fee2ac9436111f55e997667e.png"></p>
+<p>Lets use that function to see all the locations in the code that reference it.</p>
+<p><img src="/PostImages/7ba9096f36469fb21959007d486fca35.png" alt="7ba9096f36469fb21959007d486fca35.png"></p>
+<p>We can see that <code>sub_14000198C</code> has a cross-reference at offset <code>0x5B</code></p>
+<p><img src="/PostImages/772306d37dfcdbf2c7660d82ba926173.png" alt="772306d37dfcdbf2c7660d82ba926173.png"></p>
+<p>If we double-click and compile the code we should see our implementation of terminate process function.</p>
+<p><img src="/PostImages/05be071712ccd62c8d95fde40bd287c8.png" alt="05be071712ccd62c8d95fde40bd287c8.png"></p>
+<p>But&hellip;. before we jump right into it, we need to cover some basics of driver exploitation.</p>
+<p>To write a console app for driver exploitation, one must find a few things in advance before calling the DeviceIoControl function:</p>
+<ul>
+<li>The driver&rsquo;s symbolic link that user-mode can use to gain a handle to the device (SymbolicLinks are created based on DeviceName stored in Kernel Object Namespace e.g., \\Devices\MyDriver).</li>
+<li>The IOCTL code that is used in the &ldquo;<code>IRP_MJ_DEVICE_CONTROL</code>&rdquo; aka. &ldquo;<code>MajorFunction[14]</code>&rdquo; Major Function that leads to our ZwTerminateProcess function (By default, drivers have Unload, Create, and Close functions that are invoked automatically by the system: Unload when the driver is unloaded from memory, Create when user-mode calls CreateFile() to open the device, and Close when user-mode calls CloseHandle(), and none of these require IOCTL codes to invoke them.).</li>
+<li>The size and contents of the input/output buffer we send in the IRP packet to the driver associated with the device object.</li>
+</ul>
+<p> </p>
+<p>Now that we got that covered lets go back to reversing.</p>
+<p>In the first function we found via cross-reference (sub_14000198C), we can see two other interesting functions besides ZwTerminateProcess: PsLookupProcessByProcessId and ObOpenObjectByPointer. PsLookupProcessByProcessId takes two arguments, and the first one is interesting because it&rsquo;s the same argument passed into our &ldquo;sub&rdquo; function.</p>
+<p><img src="/PostImages/0a9dbbafc92f434989c053dd2ce3fb6e.png" alt="0a9dbbafc92f434989c053dd2ce3fb6e.png"></p>
+<p>According to Microsoft documentation, PsLookupProcessByProcessId has two arguments: the first is ProcessId, and it returns a referenced pointer to the EPROCESS structure of the process we provided the ID for.</p>
+<p><img src="/PostImages/7dc1f8096c1842e5462115f352730fae.png" alt="7dc1f8096c1842e5462115f352730fae.png"></p>
+<p>Once our Process variable is updated by PsLookupProcessByProcessId, the ObOpenObjectByPointer function will take that pointer and return a handle to that process object.</p>
+<p><img src="/PostImages/a4e57faf80eddfd749640133b537bf3f.png" alt="a4e57faf80eddfd749640133b537bf3f.png"></p>
+<p>ZwTerminateProcess is now able to terminate a process using the handle its provided with.</p>
+<p>So basically, this very interesting &ldquo;sub&rdquo; function does everything we need to terminate a process, we just need to figure out where that function is and how to pass the PID parameter to it. Again best way to do it is to find its cross-references:</p>
+<p><img src="/PostImages/936a62e6e1bfdf37999c6373f5ee9e8c.png" alt="936a62e6e1bfdf37999c6373f5ee9e8c.png"></p>
+<p>We can see that there is a reference at offset of <code>0x33</code> of <code>sub_140001020</code> .</p>
+<p><img src="/PostImages/9e163e531bb475d9382e2ea17b47575f.png" alt="9e163e531bb475d9382e2ea17b47575f.png"></p>
+<p>IDA does a poor job guessing some driver data types and variables. Luckily, I did wrote few of my own dumb drivers and reverse engineered them, so now I know which data types are most commonly replaced with which ones. Also, due to their values, it&rsquo;s easy to recognize them.</p>
+<p>Here is IDA wrong version:</p>
+<p><img src="/PostImages/21c43e929f173d0721091fcde19b8be7.png" alt="21c43e929f173d0721091fcde19b8be7.png"></p>
+<p>And here is my version. If you look closely, we can see several interesting things: First is the function we were looking for, second is the input/output buffer length, and lastly the IOCTL code used for this Major Function.</p>
+<p>If we provide the correct IOCTL and correct buffer to the IRP, we should be able to pass the Process ID (which is, by the way, a DWORD; 4 bytes in length, as seen in the input buffer length).</p>
+<p><img src="/PostImages/d3cabe67f6f0e966a997fd21253110ad.png" alt="d3cabe67f6f0e966a997fd21253110ad.png"></p>
+<p>But there is one thing missing: the symbolic link. The best way to find it is to, yet again, go to the cross-reference of our newly found <code>sub_140001020</code> function.</p>
+<p><img src="/PostImages/c885824b6994b9fd20c9f9cf56e3839a.png" alt="c885824b6994b9fd20c9f9cf56e3839a.png"></p>
+<p>And finnaly we are at our DriverEntry function or I would call it the main function for drivers. Here we see our MajorFunction[14] aka. IRP_MJ_DEVICE_CONTROL that gets executed once DeviceIoControl is called by user-mode (very important for our console app later).</p>
+<p>And a bit lower we can see DeviceName of our driver &ldquo;BootRepair&rdquo;. The driver created a symbolic link in the object manager under the MS‑DOS device namespace as &ldquo;\\DosDevices\\BootRepair&rdquo;, and user‑mode opens the corresponding DosDevices entry by using the Win32 device path prefix &ldquo;\\.&rdquo; (so CreateFile(&quot;\\.\BootRepair&quot;) resolves to \DosDevices\BootRepair). And viola! we have all we need to build our console app.</p>
+<p><img src="/PostImages/f6837b5e517c2474054008ceed3b68db.png" alt="f6837b5e517c2474054008ceed3b68db.png"></p>
+<p>Onto our Console app we go, and no I didn&rsquo;t vibe-code this.</p>
+<p>We use header that we need for all the functions used to interact with driver, and one of the important stuff is that we define OICTL code we need for our driver Major Function call.</p>
+<p>Our app will take the ProcessID as its only argument, and since we need it as the buffer for the DeviceIoControl function, we also calculate its size.</p>
+<p>Keep in mind that we already know what we need to provide in the input buffer and the buffer size, as mentioned earlier during reversing process.</p>
+<p>To gain a handle to our device, we need to provide the symbolic link name because this is a user-mode application, along with the minimum required access and other parameters that are not worth mentioning (due to skill issue).</p>
+<p><img src="/PostImages/77eb2eb46c11143a0e039ba7f7365925.png" alt="77eb2eb46c11143a0e039ba7f7365925.png"></p>
+<p>Lastly our DeviceIoControl function that requires our already obtained device handle, IOCTL code, and input buffer and its size. Since driver doesn&rsquo;t write anything back output buffer argument is NULL and size is 0.</p>
+<p><img src="/PostImages/bde22fc92bb51649a3e3b23ac288f657.png" alt="bde22fc92bb51649a3e3b23ac288f657.png"></p>
+<p>Sadly I don&rsquo;t have any EDR to terminate in my VM, but I will demonstrate with simple notepad.exe running as Local Administrator. We can see that our lowpriv user can&rsquo;t meddle with process that has higher integrity then his own:</p>
+<p><img src="/PostImages/7ea83cef6191cd8904485c8e8f3a046b.png" alt="7ea83cef6191cd8904485c8e8f3a046b.png"></p>
+<p>Now we load our Lenovo driver, and as you can see in the bottom right part Test Mode is not turned on.</p>
+<p><img src="/PostImages/1789b231f5a621a705df886f99134557.png" alt="1789b231f5a621a705df886f99134557.png"></p>
+<p>Because Test Mode is not enabled, this is what happens when you try to create a service for your own unsigned driver, it gets blocked by Driver Signature Enforcement. Unless you have a valid code-signing certificate to sign your driver, are abusing an already-signed legitimate driver (as in BYOVD), the only remaining option is to disable DSE but that is not the point in this blog.</p>
+<p><img src="/PostImages/4bb031b82ee1585a8f65ee87a2f810f9.png" alt="4bb031b82ee1585a8f65ee87a2f810f9.png"></p>
+<p>And finally, we can see our console app in action successfully terminating a highly elevated process by abusing a Lenovo driver.</p>
+<p><img src="/PostImages/ebf614da3878ed6ce640ba620c410af2.png" alt="ebf614da3878ed6ce640ba620c410af2.png"></p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/ADHDMurky/" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/josip-pavi6-5b29b7255" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2026 Pavičić J..
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script src="https://ADHDMurky.github.io/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
+
+    
+
+</body>
+</html>
