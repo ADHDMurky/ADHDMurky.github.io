@@ -240,16 +240,17 @@ stroke-linejoin="round" class="feather feather-home">
 <p>IDA does a poor job guessing some driver data types and variables. Luckily, I did wrote few of my own dumb drivers and reverse engineered them, so now I know which data types are most commonly replaced with which ones. Also, due to their values, it&rsquo;s easy to recognize them.</p>
 <p>Here is IDA wrong version:</p>
 <p><img src="/PostImages/21c43e929f173d0721091fcde19b8be7.png" alt="21c43e929f173d0721091fcde19b8be7.png"></p>
-<p>And here is my version. If you look closely, we can see several interesting things: First is the function we were looking for, second is the input/output buffer length, and lastly the IOCTL code used for this Major Function.</p>
-<p>If we provide the correct IOCTL and correct buffer to the IRP, we should be able to pass the Process ID (which is, by the way, a DWORD; 4 bytes in length, as seen in the input buffer length).</p>
+<p>And here is my version.</p>
 <p><img src="/PostImages/d3cabe67f6f0e966a997fd21253110ad.png" alt="d3cabe67f6f0e966a997fd21253110ad.png"></p>
+<p>If you look closely, we can see several interesting things: First is the function we were looking for, second is the input/output buffer length, and lastly the IOCTL code used for this Major Function.</p>
+<p>If we provide the correct IOCTL and correct buffer to the IRP, we should be able to pass the Process ID (which is, by the way, a DWORD; 4 bytes in length, as seen in the input buffer length).</p>
 <p>But there is one thing missing: the symbolic link. The best way to find it is to, yet again, go to the cross-reference of our newly found <code>sub_140001020</code> function.</p>
 <p><img src="/PostImages/c885824b6994b9fd20c9f9cf56e3839a.png" alt="c885824b6994b9fd20c9f9cf56e3839a.png"></p>
-<p>And finnaly we are at our DriverEntry function or I would call it the main function for drivers. Here we see our MajorFunction[14] aka. IRP_MJ_DEVICE_CONTROL that gets executed once DeviceIoControl is called by user-mode (very important for our console app later).</p>
-<p>And a bit lower we can see DeviceName of our driver &ldquo;BootRepair&rdquo;. The driver created a symbolic link in the object manager under the MS‑DOS device namespace as &ldquo;\\DosDevices\\BootRepair&rdquo;, and user‑mode opens the corresponding DosDevices entry by using the Win32 device path prefix &ldquo;\\.&rdquo; (so CreateFile(&quot;\\.\BootRepair&quot;) resolves to \DosDevices\BootRepair). And viola! we have all we need to build our console app.</p>
+<p>And finally we are at our DriverEntry function or I would call it the main function for drivers. Here we see our MajorFunction[14] aka. IRP_MJ_DEVICE_CONTROL that gets executed once DeviceIoControl is called by user-mode (very important for our console app later).</p>
+<p>And a bit lower we can see DeviceName of our driver &ldquo;BootRepair&rdquo;. The driver created a symbolic link in the object manager under the MS‑DOS device namespace as &ldquo;\\DosDevices\\BootRepair&rdquo;, and user‑mode opens the corresponding DosDevices entry by using the Win32 device path prefix &ldquo;\\.&rdquo; (so CreateFile(&quot;\\.\BootRepair&quot;) resolves to \DosDevices\BootRepair). And voilà! we have all we need to build our console app.</p>
 <p><img src="/PostImages/f6837b5e517c2474054008ceed3b68db.png" alt="f6837b5e517c2474054008ceed3b68db.png"></p>
 <p>Onto our Console app we go, and no I didn&rsquo;t vibe-code this.</p>
-<p>We use header that we need for all the functions used to interact with driver, and one of the important stuff is that we define OICTL code we need for our driver Major Function call.</p>
+<p>We use header that we need for all the functions used to interact with driver, and one of the important stuff is that we define IOCTL code we need for our driver Major Function call.</p>
 <p>Our app will take the ProcessID as its only argument, and since we need it as the buffer for the DeviceIoControl function, we also calculate its size.</p>
 <p>Keep in mind that we already know what we need to provide in the input buffer and the buffer size, as mentioned earlier during reversing process.</p>
 <p>To gain a handle to our device, we need to provide the symbolic link name because this is a user-mode application, along with the minimum required access and other parameters that are not worth mentioning (due to skill issue).</p>
