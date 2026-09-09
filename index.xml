@@ -53,24 +53,22 @@
       
       <description>&lt;p align=&#34;center&#34;&gt;
   &lt;img src=&#34;https://ADHDMurky.github.io/Avatar/avatar.jpg&#34;
-       style=&#34;max-width:150px; border-radius:50%;&#34; /&gt;
+	style=&#34;width:250px; max-width:100%; border-radius:50%;&#34;  /&gt;
 &lt;/p&gt;
 &lt;p&gt;I am a cybersecurity professional specializing in red team operations, internal penetration testing, and Active Directory exploitation.&lt;/p&gt;
 &lt;p&gt;Currently, I work on red team engagements and security assessments involving modern enterprise environments, focusing on Active Directory security, ADCS exploitation, SCCM security assessments, and Exchange server compromises. Currently holding following certifications:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;HTB Certified Active Directory Pentesting Expert (CAPE)&lt;/li&gt;
-&lt;li&gt;Certified Red Team Lead (CRTL)&lt;/li&gt;
 &lt;li&gt;Certified Red Team Operator (CRTO)&lt;/li&gt;
 &lt;li&gt;Certified Red Team Master (CRTM)&lt;/li&gt;
 &lt;li&gt;Certified Red Team Expert (CRTE)&lt;/li&gt;
 &lt;li&gt;Certified Red Team Professional (CRTP)&lt;/li&gt;
 &lt;li&gt;Certified Red Team Specialist v2 (CRTS)&lt;/li&gt;
 &lt;li&gt;Certified Red Team Analyst v2 (CRTA)&lt;/li&gt;
-&lt;li&gt;Certified Evasion Techniques Professional (CETP)&lt;/li&gt;
-&lt;li&gt;Certified Enterprise Security Professional (CESP-ADCS)&lt;/li&gt;
 &lt;li&gt;Practical Network Penetration Tester (PNPT)&lt;/li&gt;
 &lt;li&gt;Certified Active Directory Pentesting eXpert v2 (C-ADPenX)&lt;/li&gt;
 &lt;li&gt;Certified Red Teamer (CRTeamer)&lt;/li&gt;
+&lt;li&gt;Certified Enterprise Security Professional (CESP-ADCS)&lt;/li&gt;
 &lt;li&gt;Certified Active Directory Red Team Specialist (AD-RTS)&lt;/li&gt;
 &lt;/ul&gt;
 &lt;hr&gt;
