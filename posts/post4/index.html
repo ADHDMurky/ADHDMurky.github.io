@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en-gb"><head><meta charset="utf-8">
+<meta http-equiv="content-type" content="text/html">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title itemprop="name">Even more privileged ADCS ESC_CES | ADHDMurky Blog</title>
+<meta property="og:title" content="Even more privileged ADCS ESC_CES | ADHDMurky Blog" />
+<meta name="twitter:title" content="Even more privileged ADCS ESC_CES | ADHDMurky Blog" />
+<meta itemprop="name" content="Even more privileged ADCS ESC_CES | ADHDMurky Blog" />
+<meta name="application-name" content="Even more privileged ADCS ESC_CES | ADHDMurky Blog" />
+<meta property="og:site_name" content="ADHDMurkySite" />
+
+<meta name="description" content="Personal Blog Home Page">
+<meta itemprop="description" content="Personal Blog Home Page" />
+<meta property="og:description" content="Personal Blog Home Page" />
+<meta name="twitter:description" content="Personal Blog Home Page" />
+
+<meta property="og:locale" content="en-gb" />
+<meta name="language" content="en-gb" />
+
+  <link rel="alternate" hreflang="en-gb" href="https://ADHDMurky.github.io/posts/post4/" title="English" />
+
+
+
+
+
+    
+    
+    
+
+    <meta property="og:type" content="article" />
+    <meta property="og:article:published_time" content=2026-09-25T12:26:18&#43;0200 />
+    <meta property="article:published_time" content=2026-09-25T12:26:18&#43;0200 />
+    <meta property="og:url" content="https://ADHDMurky.github.io/posts/post4/" />
+
+    
+    <meta property="og:article:author" content="Pavičić J." />
+    <meta property="article:author" content="Pavičić J." />
+    <meta name="author" content="Pavičić J." />
+    
+    
+
+    
+
+    <script defer type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "Article",
+        "headline": "Even more privileged ADCS ESC_CES",
+        "author": {
+        "@type": "Person",
+        "name": ""
+        },
+        "datePublished": "2026-09-25",
+        "description": "",
+        "wordCount":  998 ,
+        "mainEntityOfPage": "True",
+        "dateModified": "2026-09-25",
+        "image": {
+        "@type": "imageObject",
+        "url": ""
+        },
+        "publisher": {
+        "@type": "Organization",
+        "name": "ADHDMurky Blog"
+        }
+    }
+    </script>
+
+
+<meta name="generator" content="Hugo 0.165.0">
+
+    
+    <meta property="og:url" content="https://ADHDMurky.github.io/posts/post4/">
+	<meta property="og:site_name" content="ADHDMurky Blog">
+	<meta property="og:title" content="Even more privileged ADCS ESC_CES">
+	<meta property="og:description" content="For a long time, when people talked about NTLM relay to AD CS, the conversation usually focused on classic Web Enrollment on the following endpoints:
+/certsrv/ /certsrv/certfnsh.asp But AD CS has one more component that can provide additional vector for privilege escalation
+AD CS consists of following components, for those who what to know more:
+Certification Authority
+- The core CA service that issues, renews, revokes, and manages certificates. Certification Authority Web Enrollment
+- Classic /certsrv/ web interface for requesting and retrieving certificates. Online Responder
+- Provides OCSP responses for certificate revocation checking. Network Device Enrollment Service
+- NDES/SCEP service used by network devices to enroll certificates. Certificate Enrollment Web Service / Certificate Enrollment Policy Web Service
+- Web-service based enrollment/policy components:
+- CES: Certificate Enrollment Web Service
+- CEP: Certificate Enrollment Policy Web Service When looking deeper at AD CS role services, there is another component that can also be exposed over HTTP(S):">
+	<meta property="og:locale" content="en_gb">
+	<meta property="og:type" content="article">
+		<meta property="article:section" content="posts">
+		<meta property="article:published_time" content="2026-09-25T12:26:18+02:00">
+		<meta property="article:modified_time" content="2026-09-25T12:26:18+02:00">
+
+
+    
+    
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:title" content="Even more privileged ADCS ESC_CES">
+	<meta name="twitter:description" content="For a long time, when people talked about NTLM relay to AD CS, the conversation usually focused on classic Web Enrollment on the following endpoints:
+/certsrv/ /certsrv/certfnsh.asp But AD CS has one more component that can provide additional vector for privilege escalation
+AD CS consists of following components, for those who what to know more:
+Certification Authority
+- The core CA service that issues, renews, revokes, and manages certificates. Certification Authority Web Enrollment
+- Classic /certsrv/ web interface for requesting and retrieving certificates. Online Responder
+- Provides OCSP responses for certificate revocation checking. Network Device Enrollment Service
+- NDES/SCEP service used by network devices to enroll certificates. Certificate Enrollment Web Service / Certificate Enrollment Policy Web Service
+- Web-service based enrollment/policy components:
+- CES: Certificate Enrollment Web Service
+- CEP: Certificate Enrollment Policy Web Service When looking deeper at AD CS role services, there is another component that can also be exposed over HTTP(S):">
+
+
+    
+
+    <link rel="canonical" href="https://ADHDMurky.github.io/posts/post4/">
+    <link href="/style.min.11853a65c712c53bc35a0cbe994fcc1c688974209773c03c56caf25e138ea679.css" rel="stylesheet">
+    <link href="/code-highlight.min.706d31975fec544a864cb7f0d847a73ea55ca1df91bf495fd12a177138d807cf.css" rel="stylesheet">
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
+    <link rel="mask-icon" href="/icons/safari-pinned-tab.svg">
+    <link rel="shortcut icon" href="/favicon.ico">
+
+
+
+
+<link rel="manifest" href="https://ADHDMurky.github.io/site.webmanifest">
+
+<meta name="msapplication-config" content="/browserconfig.xml">
+<meta name="msapplication-TileColor" content="#2d89ef">
+<meta name="theme-color" content="#434648">
+    <meta name="color-scheme" content="light dark">
+
+    
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg">
+
+    
+    
+    
+</head>
+<body data-theme = "dark" class="notransition">
+
+<script src="/js/theme.min.8961c317c5b88b953fe27525839672c9343f1058ab044696ca225656c8ba2ab0.js" integrity="sha256-iWHDF8W4i5U/4nUlg5ZyyTQ/EFirBEaWyiJWVsi6KrA="></script>
+
+<div class="navbar" role="navigation">
+    <nav class="menu" aria-label="Main Navigation">
+        <a href="https://ADHDMurky.github.io/" class="logo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" 
+viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" 
+stroke-linejoin="round" class="feather feather-home">
+<title>Home</title>
+<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+<polyline points="9 22 9 12 15 12 15 22"></polyline>
+</svg>
+        </a>
+        <input type="checkbox" id="menu-trigger" class="menu-trigger" />
+        <label for="menu-trigger">
+            <span class="menu-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" stroke="currentColor" fill="none" viewBox="0 0 14 14"><title>Menu</title><path stroke-linecap="round" stroke-linejoin="round" d="M10.595 7L3.40726 7"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 3.51488L3.49301 3.51488"></path><path stroke-linecap="round" stroke-linejoin="round" d="M10.5096 10.4851H3.49301"></path><path stroke-linecap="round" stroke-linejoin="round" d="M0.5 12.5V1.5C0.5 0.947715 0.947715 0.5 1.5 0.5H12.5C13.0523 0.5 13.5 0.947715 13.5 1.5V12.5C13.5 13.0523 13.0523 13.5 12.5 13.5H1.5C0.947715 13.5 0.5 13.0523 0.5 12.5Z"></path></svg>
+            </span>
+        </label>
+
+        <div class="trigger">
+            <ul class="trigger-container">
+                
+                
+                <li>
+                    <a class="menu-link " href="/">
+                        Home
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link active" href="/posts/">
+                        Posts
+                    </a>
+                    
+                </li>
+                
+                <li>
+                    <a class="menu-link " href="/whoami/">
+                        Whoami
+                    </a>
+                    
+                </li>
+                
+                <li class="menu-separator">
+                    <span>|</span>
+                </li>
+                
+                
+            </ul>
+            <a id="mode" href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-sunny" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>LIGHT</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="mode-moon" width="21" height="21" viewBox="0 0 14 14" stroke-width="1">
+<title>DARK</title><g><circle cx="7" cy="7" r="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></circle><line x1="7" y1="0.5" x2="7" y2="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="2.4" x2="3.82" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="0.5" y1="7" x2="2.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="2.4" y1="11.6" x2="3.82" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="7" y1="13.5" x2="7" y2="11.5" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="11.6" x2="10.18" y2="10.18" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="13.5" y1="7" x2="11.5" y2="7" fill="none" stroke-linecap="round" stroke-linejoin="round"></line><line x1="11.6" y1="2.4" x2="10.18" y2="3.82" fill="none" stroke-linecap="round" stroke-linejoin="round"></line></g></svg>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="wrapper post">
+    <main class="page-content" aria-label="Content">
+        <article>
+            <header class="header">
+                <h1 class="header-title">Even more privileged ADCS ESC_CES</h1>
+                
+                
+                
+                <div class="post-meta">
+                    <time datetime="2026-09-25T12:26:18&#43;02:00" itemprop="datePublished"> 25 Sept 2026 </time>
+                </div>
+                
+            </header>
+            
+            <div class="page-content">
+                <p>For a long time, when people talked about NTLM relay to AD CS, the conversation usually focused on classic <strong>Web Enrollment</strong> on the following endpoints:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/certsrv/
+</span></span><span class="line"><span class="cl">/certsrv/certfnsh.asp
+</span></span></code></pre></div><p>But AD CS has one more component that can provide additional vector for privilege escalation</p>
+<p>AD CS consists of following components, for those who what to know more:</p>
+<ul>
+<li>Certification Authority<br>
+     - The core CA service that issues, renews, revokes, and manages certificates.</li>
+<li>Certification Authority Web Enrollment<br>
+     - Classic /certsrv/ web interface for requesting and retrieving certificates.</li>
+<li>Online Responder<br>
+     - Provides OCSP responses for certificate revocation checking.</li>
+<li>Network Device Enrollment Service<br>
+     - NDES/SCEP service used by network devices to enroll certificates.</li>
+<li>Certificate Enrollment Web Service / Certificate Enrollment Policy Web Service<br>
+     - Web-service based enrollment/policy components:<br>
+         - CES: Certificate Enrollment Web Service<br>
+         - CEP: Certificate Enrollment Policy Web Service</li>
+</ul>
+<p>When looking deeper at AD CS role services, there is another component that can also be exposed over HTTP(S):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Certificate Enrollment Services, or CES
+</span></span></code></pre></div><p>CES commonly lives at endpoints like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">https://ca.example.local/CA_CES_Kerberos/service.svc/CES
+</span></span><span class="line"><span class="cl">https://ca.example.local/CA_CES_NTLM/service.svc/CES
+</span></span></code></pre></div><p>This is interesting because CES can also accept certificate enrollment requests. In other words, if an attacker can authenticate to CES as a principal that is allowed to enroll a template, CES may also be able to return a certificate.</p>
+<p>That led to the obvious question:</p>
+<p>If Web Enrollment can be abused through NTLM relay to obtain certificates, can CES be abused in a similar way?</p>
+<p>To answer that, I started comparing the actual HTTP requests used by classic Web Enrollment and CES. I looked at protocols, authentication negotiation, request bodies, response formats, and the protections around both endpoints.</p>
+<p>Since CES is normally exposed over HTTPS and often has its own trusted TLS certificate, intercepting and understanding the traffic required setting up tools like <code>mitmproxy</code> or Burp and dealing with the HTTPS layer properly.</p>
+<p>The result is that Web Enrollment and CES both perform certificate enrollment, but they are completely different HTTP protocols.</p>
+<p>Web Enrollment uses a normal HTTP form POST.</p>
+<p>The request content type is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">Content-Type: application/x-www-form-urlencoded
+</span></span></span></code></pre></div><p>The client submits a CSR with a request like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/certsrv/certfnsh.asp</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">ca.example.local</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+</span></span><span class="line"><span class="cl"><span class="n">Authorization</span><span class="o">:</span> <span class="l">NTLM &lt;token&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Mode=newreq&amp;CertRequest=&lt;CSR&gt;&amp;CertAttrib=CertificateTemplate:User&amp;TargetStoreFlags=0&amp;SaveCert=yes&amp;ThumbPrint=
+</span></span></code></pre></div><p>The important fields are:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CertRequest=&lt;PKCS10 CSR&gt;
+</span></span><span class="line"><span class="cl">CertAttrib=CertificateTemplate:&lt;template&gt;
+</span></span></code></pre></div><p>For example:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CertAttrib=CertificateTemplate:User
+</span></span></code></pre></div><p>If a SAN/UPN is included, the attribute can look like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CertAttrib=CertificateTemplate:User%0d%0aSAN:upn=user@example.local
+</span></span></code></pre></div><p>In Web Enrollment, the CSR is sent in the form field:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CertRequest=
+</span></span></code></pre></div><p>The certificate template is sent in:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CertAttrib=CertificateTemplate:&lt;template&gt;
+</span></span></code></pre></div><p>Classic Web Enrollment usually returns HTML.</p>
+<p>If the request is accepted, the response often contains a request ID or a link like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">certnew.cer?ReqID=42
+</span></span></code></pre></div><p>The client then fetches the certificate separately:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">GET /certsrv/certnew.cer?ReqID=42
+</span></span></span></code></pre></div><p>So the flow is usually:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">1. Generate private key and CSR
+</span></span><span class="line"><span class="cl">2. POST CSR to /certsrv/certfnsh.asp
+</span></span><span class="line"><span class="cl">3. Parse HTML response for ReqID
+</span></span><span class="line"><span class="cl">4. GET /certsrv/certnew.cer?ReqID=&lt;id&gt;
+</span></span><span class="line"><span class="cl">5. Combine private key and certificate
+</span></span><span class="line"><span class="cl">6. Save PFX
+</span></span></code></pre></div><p>Certificate Enrollment Services is a different AD CS role service. It exposes a WCF service endpoint, usually under a path like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/CA_CES_Kerberos/service.svc/CES
+</span></span><span class="line"><span class="cl">/CA_CES_NTLM/service.svc/CES
+</span></span></code></pre></div><p>A typical URL is:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">https://ca.example.local/CA_CES_Kerberos/service.svc/CES
+</span></span></code></pre></div><p>Unlike Web Enrollment, CES does not accept a simple <code>application/x-www-form-urlencoded</code> request.</p>
+<p>CES uses SOAP/WSTEP. WSTEP is short for Web Services Trust Enrollment Protocol.</p>
+<p>In practice, the client sends a WS-Trust SOAP <code>RequestSecurityToken</code> message.</p>
+<p>CES uses:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">Content-Type: application/soap+xml; charset=utf-8
+</span></span></span></code></pre></div><p>A CES enrollment request is sent to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="nf">POST</span> <span class="nn">/CA_CES_Kerberos/service.svc/CES</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+</span></span><span class="line"><span class="cl"><span class="n">Host</span><span class="o">:</span> <span class="l">ca.example.local</span>
+</span></span><span class="line"><span class="cl"><span class="n">Content-Type</span><span class="o">:</span> <span class="l">application/soap+xml; charset=utf-8</span>
+</span></span><span class="line"><span class="cl"><span class="n">Authorization</span><span class="o">:</span> <span class="l">Negotiate &lt;token&gt;</span>
+</span></span></code></pre></div><p>The body is XML it contains a SOAP envelope, a simplified version looks like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="cp">&lt;?xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;s:Envelope</span>
+</span></span><span class="line"><span class="cl">  <span class="na">xmlns:a=</span><span class="s">&#34;http://www.w3.org/2005/08/addressing&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">xmlns:s=</span><span class="s">&#34;http://www.w3.org/2003/05/soap-envelope&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;s:Header&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;a:Action</span> <span class="na">s:mustUnderstand=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      http://schemas.microsoft.com/windows/pki/2009/01/enrollment/RST/wstep
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/a:Action&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;a:MessageID&gt;</span>urn:uuid:...<span class="nt">&lt;/a:MessageID&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;a:To</span> <span class="na">s:mustUnderstand=</span><span class="s">&#34;1&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      https://ca.example.local/CA_CES_Kerberos/service.svc/CES
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/a:To&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/s:Header&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;s:Body&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;RequestSecurityToken</span>
+</span></span><span class="line"><span class="cl">      <span class="na">PreferredLanguage=</span><span class="s">&#34;en-US&#34;</span>
+</span></span><span class="line"><span class="cl">      <span class="na">xmlns=</span><span class="s">&#34;http://docs.oasis-open.org/ws-sx/ws-trust/200512&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;TokenType&gt;</span>
+</span></span><span class="line"><span class="cl">        http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-x509-token-profile-1.0#X509v3
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/TokenType&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;RequestType&gt;</span>
+</span></span><span class="line"><span class="cl">        http://docs.oasis-open.org/ws-sx/ws-trust/200512/Issue
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/RequestType&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;BinarySecurityToken</span>
+</span></span><span class="line"><span class="cl">        <span class="na">ValueType=</span><span class="s">&#34;http://schemas.microsoft.com/windows/pki/2009/01/enrollment#PKCS10&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">EncodingType=</span><span class="s">&#34;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd#base64binary&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xmlns=</span><span class="s">&#34;http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-secext-1.0.xsd&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        BASE64_PKCS10_CSR
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/BinarySecurityToken&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;AdditionalContext</span>
+</span></span><span class="line"><span class="cl">        <span class="na">xmlns=</span><span class="s">&#34;http://schemas.xmlsoap.org/ws/2006/12/authorization&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;ContextItem</span> <span class="na">Name=</span><span class="s">&#34;CertificateTemplate&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">          <span class="nt">&lt;Value&gt;</span>User<span class="nt">&lt;/Value&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;/ContextItem&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;/AdditionalContext&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/RequestSecurityToken&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/s:Body&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/s:Envelope&gt;</span>
+</span></span></code></pre></div><p>CSR is not sent as a form field. It is embedded inside a WS-Security element:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;BinarySecurityToken</span>
+</span></span><span class="line"><span class="cl">  <span class="na">ValueType=</span><span class="s">&#34;http://schemas.microsoft.com/windows/pki/2009/01/enrollment#PKCS10&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="na">EncodingType=</span><span class="s">&#34;...#base64binary&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  BASE64_PKCS10_CSR
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/BinarySecurityToken&gt;</span>
+</span></span></code></pre></div><p>The certificate template is not sent as <code>CertAttrib</code>. It is sent inside <code>AdditionalContext</code>:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;AdditionalContext</span> <span class="na">xmlns=</span><span class="s">&#34;http://schemas.xmlsoap.org/ws/2006/12/authorization&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;ContextItem</span> <span class="na">Name=</span><span class="s">&#34;CertificateTemplate&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;Value&gt;</span>User<span class="nt">&lt;/Value&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/ContextItem&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/AdditionalContext&gt;</span>
+</span></span></code></pre></div><p>This is one of the most important differences.</p>
+<p><strong>Web Enrollment:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">CertAttrib=CertificateTemplate:User
+</span></span></code></pre></div><p><strong>CES:</strong></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;ContextItem</span> <span class="na">Name=</span><span class="s">&#34;CertificateTemplate&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;Value&gt;</span>User<span class="nt">&lt;/Value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/ContextItem&gt;</span>
+</span></span></code></pre></div><p>CES usually returns the issued certificate material directly inside the SOAP response. The response contains one or more:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;BinarySecurityToken&gt;</span>
+</span></span></code></pre></div><p>Common returned token types include:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">X509v3 certificate
+</span></span><span class="line"><span class="cl">PKCS7 response
+</span></span></code></pre></div><p>So unlike Web Enrollment, CES normally does not require a separate request to get certificate:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">GET /certsrv/certnew.cer?ReqID=&lt;id&gt;
+</span></span></code></pre></div><p>The flow is usually:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">1. Generate private key and CSR
+</span></span><span class="line"><span class="cl">2. Build SOAP RequestSecurityToken
+</span></span><span class="line"><span class="cl">3. POST SOAP to /service.svc/CES
+</span></span><span class="line"><span class="cl">4. Parse SOAP response
+</span></span><span class="line"><span class="cl">5. Extract X509v3 and/or PKCS7 BinarySecurityToken
+</span></span><span class="line"><span class="cl">6. Combine private key and certificate
+</span></span><span class="line"><span class="cl">7. Save PFX
+</span></span></code></pre></div><h3 id="authentication-and-enrollment">Authentication and Enrollment</h3>
+<p>Both Web Enrollment and CES can be protected by IIS Windows Authentication.</p>
+<p>That means the authentication layer may involve:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">NTLM
+</span></span><span class="line"><span class="cl">Negotiate
+</span></span><span class="line"><span class="cl">Kerberos
+</span></span></code></pre></div><p>However, default behavior is different between endpoints.</p>
+<p>Classic Web Enrollment often accepts:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">WWW-Authenticate: Negotiate
+</span></span></span><span class="line"><span class="cl"><span class="err">WWW-Authenticate: NTLM
+</span></span></span></code></pre></div><p>While CES, by default, uses the following:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-http" data-lang="http"><span class="line"><span class="cl"><span class="err">WWW-Authenticate: Negotiate
+</span></span></span></code></pre></div><p>I tested this via this random script just to make sure:</p>
+<p><img src="/PostImages/e639a8b3b6405a7cf012afd29dbdda58.png" alt="e639a8b3b6405a7cf012afd29dbdda58.png"></p>
+<p>In my mind, this meant that I could negotiate NTLM authentication, and that turned out to be true. I built a tool that sends the same SOAP requests to the CES endpoint using Negotiate.</p>
+<p>Here a proof-of-concept</p>
+<p><img src="/PostImages/e38ddc82a559544cba526ef49288fca2.png" alt="e38ddc82a559544cba526ef49288fca2.png"></p>
+<p>It work with both NTLM and Kerberos mode for Negotiate.</p>
+<hr>
+<h3 id="interception-and-relay">Interception and Relay</h3>
+<p>So Why Web Enrollment Tooling Does Not Automatically Work Against CES?</p>
+<p>ntlmrelay tool expects to send something like:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Mode=newreq&amp;CertRequest=...&amp;CertAttrib=CertificateTemplate:User
+</span></span></code></pre></div><p>to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/certsrv/certfnsh.asp
+</span></span></code></pre></div><p>A CES endpoint does not understand that request it expects are SOAP XML containing a WS-Trust request:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;RequestSecurityToken&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;BinarySecurityToken&gt;</span>CSR<span class="nt">&lt;/BinarySecurityToken&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;AdditionalContext&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;ContextItem</span> <span class="na">Name=</span><span class="s">&#34;CertificateTemplate&#34;</span><span class="nt">&gt;</span>
+</span></span><span class="line"><span class="cl">      <span class="nt">&lt;Value&gt;</span>User<span class="nt">&lt;/Value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/ContextItem&gt;</span>
+</span></span><span class="line"><span class="cl">  <span class="nt">&lt;/AdditionalContext&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/RequestSecurityToken&gt;</span>
+</span></span></code></pre></div><p>sent to:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">/service.svc/CES
+</span></span></code></pre></div><p>The concept is similar: submit CSR, request template, receive certificate, but the protocol is completely different.</p>
+<p>With all that in mind, and based on what I&rsquo;ve learned so far, I tried to build a tool that could intercept an authentication request and relay it to the CES endpoint to obtain a certificate.</p>
+<p>Disclamer: Tool is heavily based on existing impacket ntlmrealy tool I just modified request handling.</p>
+<p>Here is our intercept and relay tool</p>
+<p><img src="/PostImages/cc58ef0389b989ccfe55e5896498bf41.png" alt="cc58ef0389b989ccfe55e5896498bf41.png"></p>
+<p>Getting that juicy user authentication:<br>
+<img src="/PostImages/592c9b43b9a12cca5b82f242369ee132.png" alt="592c9b43b9a12cca5b82f242369ee132.png"></p>
+<p>And easy Un-PAC-The-Hash and Pass-The-Certificate</p>
+<p><img src="/PostImages/914755129a85e4246d4cc9fd097acfd4.png" alt="914755129a85e4246d4cc9fd097acfd4.png"></p>
+<p>Sorry for the long post here is a picture of Murloc</p>
+<p><img src="/PostImages/603705165cf3ade366cebe2b8a82b786.png" alt="603705165cf3ade366cebe2b8a82b786.png"></p>
+
+            </div>
+        </article></main>
+</div>
+<footer class="footer">
+    <span class="footer_item"> </span>
+    &nbsp;
+
+    <div class="footer_social-icons">
+<a href="https://github.com/ADHDMurky/" target="_blank" rel="noopener noreferrer me"
+    title="Github">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path
+        d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22">
+    </path>
+</svg>
+</a>
+<a href="https://www.linkedin.com/in/josip-pavi6-5b29b7255" target="_blank" rel="noopener noreferrer me"
+    title="Linkedin">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+    <rect x="2" y="9" width="4" height="12"></rect>
+    <circle cx="4" cy="4" r="2"></circle>
+</svg>
+</a>
+<a href="/index.xml" target="_blank" rel="noopener noreferrer me"
+    title="Rss">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+    stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 11a9 9 0 0 1 9 9" />
+    <path d="M4 4a16 16 0 0 1 16 16" />
+    <circle cx="5" cy="19" r="1" />
+</svg>
+</a>
+</div>
+    <small class="footer_copyright">
+        © 2026 Pavičić J..
+        Powered by <a href="https://github.com/hugo-sid/hugo-blog-awesome" target="_blank" rel="noopener">Hugo blog awesome</a>.
+    </small>
+</footer><a href="#" title="Go to top" id="totop">
+    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" stroke="currentColor" viewBox="0 96 960 960">
+    <path d="M283 704.739 234.261 656 480 410.261 725.739 656 677 704.739l-197-197-197 197Z"/>
+</svg>
+
+</a>
+
+
+    
+
+
+
+
+    
+    
+        
+    
+
+    
+    
+        
+    
+
+
+
+    
+    <script src="https://ADHDMurky.github.io/js/main.min.35f435a5d8eac613c52daa28d8af544a4512337d3e95236e4a4978417b8dcb2f.js" integrity="sha256-NfQ1pdjqxhPFLaoo2K9USkUSM30&#43;lSNuSkl4QXuNyy8="></script>
+
+    
+
+</body>
+</html>

@@ -6,7 +6,37 @@
     <description>Recent content on ADHDMurky Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-gb</language>
-    <lastBuildDate>Wed, 27 May 2026 00:26:18 +0100</lastBuildDate><atom:link href="https://ADHDMurky.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Sep 2026 12:26:18 +0200</lastBuildDate><atom:link href="https://ADHDMurky.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Even more privileged ADCS ESC_CES</title>
+      <link>https://ADHDMurky.github.io/posts/post4/</link>
+      <pubDate>Fri, 25 Sep 2026 12:26:18 +0200</pubDate>
+      
+      <guid>https://ADHDMurky.github.io/posts/post4/</guid>
+      
+      <description>&lt;p&gt;For a long time, when people talked about NTLM relay to AD CS, the conversation usually focused on classic &lt;strong&gt;Web Enrollment&lt;/strong&gt; on the following endpoints:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-text&#34; data-lang=&#34;text&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/certsrv/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/certsrv/certfnsh.asp
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;But AD CS has one more component that can provide additional vector for privilege escalation&lt;/p&gt;
+&lt;p&gt;AD CS consists of following components, for those who what to know more:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Certification Authority&lt;br&gt;
+     - The core CA service that issues, renews, revokes, and manages certificates.&lt;/li&gt;
+&lt;li&gt;Certification Authority Web Enrollment&lt;br&gt;
+     - Classic /certsrv/ web interface for requesting and retrieving certificates.&lt;/li&gt;
+&lt;li&gt;Online Responder&lt;br&gt;
+     - Provides OCSP responses for certificate revocation checking.&lt;/li&gt;
+&lt;li&gt;Network Device Enrollment Service&lt;br&gt;
+     - NDES/SCEP service used by network devices to enroll certificates.&lt;/li&gt;
+&lt;li&gt;Certificate Enrollment Web Service / Certificate Enrollment Policy Web Service&lt;br&gt;
+     - Web-service based enrollment/policy components:&lt;br&gt;
+         - CES: Certificate Enrollment Web Service&lt;br&gt;
+         - CEP: Certificate Enrollment Policy Web Service&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;When looking deeper at AD CS role services, there is another component that can also be exposed over HTTP(S):&lt;/p&gt;</description>
+      
+    </item>
+    
     <item>
       <title>BYOVD for dummies | Lenovo driver EDR killer</title>
       <link>https://ADHDMurky.github.io/posts/post3/</link>
